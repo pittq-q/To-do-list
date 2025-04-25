@@ -6,6 +6,7 @@
 *.cache
 *.dbmdl
 *.pdb
+*.aps
 
 # Build results
 [Bb]in/
