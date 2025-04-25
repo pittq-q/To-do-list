@@ -15,6 +15,7 @@ void StartMenu(Task* taskList, size_t SIZELIST)
 		{
 			std::cout << "Enter your choice: ";
 			std::cin >> *choice;
+			CheckingInput();
 			if (*choice != 1 && *choice != 2 && *choice != 3)
 			{
 				std::cout << "Your choice is uncorrect. Please, choose from the following." << std::endl;
@@ -81,6 +82,7 @@ void MenuForTasks(Task* taskList, int* choice)
 	{
 		std::cout << "Enter your choice: ";
 		std::cin >> *choice;
+		CheckingInput();
 		if (*choice != 1 && *choice != 2 && *choice != 3)
 		{
 			std::cout << "Your choice is uncorrect. Please, choose from the following." << std::endl;
@@ -94,6 +96,7 @@ void MenuForTasks(Task* taskList, int* choice)
 		{
 			std::cout << "Choose a task: ";
 			std::cin >> *choice;
+			CheckingInput();
 			if (*choice < 1 || *choice > 10 || taskList[*choice - 1].IsEmpty())
 			{
 				std::cout << "Your choice is uncorrect. Please, choose from the following." << std::endl;
@@ -107,6 +110,7 @@ void MenuForTasks(Task* taskList, int* choice)
 		{
 			std::cout << "Choose a task: ";
 			std::cin >> *choice;
+			CheckingInput();
 			if (*choice < 1 || *choice > 10 || taskList[*choice - 1].IsEmpty())
 			{
 				std::cout << "Your choice is uncorrect. Please, choose from the following." << std::endl;

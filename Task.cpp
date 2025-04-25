@@ -15,17 +15,20 @@ Task::Task(const Task & other)
 
 void Task::CreateTask()
 {
-	std::cin.ignore();
+	std::cin.ignore(LLONG_MAX, '\n');
 	std::cout << "Enter a Title (max symbols - 20): ";
 	std::cin.getline(taskTitle, 20);
+	CheckingInput();
 
 	std::cout << "Enter a Text (max symbols - 64): ";
 	std::cin.getline(taskText, 64);
+	CheckingInput();
 
 	do
 	{
 		std::cout << "Enter a deadline (dd.mm.YYYY format): ";
 		std::cin.getline(deadline, 11);
+		CheckingInput();
 		if (deadline[2] != '.' || deadline[5] != '.')
 		{
 			std::cout << "Enter the deadline using the format!" << std::endl;
@@ -44,6 +47,7 @@ void Task::UpdateTask(int* choice)
 			<< "2. Text" << std::endl
 			<< "3. Deadline" << std::endl << std::endl;
 		std::cin >> *choice;
+		CheckingInput();
 		if (*choice < 1 || *choice > 3)
 		{
 			std::cout << "Your choice is uncorrect. Please, choose from the following." << std::endl;
@@ -56,16 +60,19 @@ void Task::UpdateTask(int* choice)
 	case 1:
 		std::cout << "Enter a new Title (max symbols - 20): ";
 		std::cin.getline(taskTitle, 20);
+		CheckingInput();
 		break;
 	case 2:
 		std::cout << "Enter a new Text (max symbols - 64): ";
 		std::cin.getline(taskText, 64);
+		CheckingInput();
 		break;
 	case 3:
 		do
 		{
 			std::cout << "Enter a new deadline (dd.mm.YYYY format): ";
 			std::cin.getline(deadline, 11);
+			CheckingInput();
 			if (deadline[2] != '.' || deadline[5] != '.')
 			{
 				std::cout << "Enter the deadline using the format!" << std::endl;

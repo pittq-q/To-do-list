@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include "TechnicalFunctions.h"
 
 class Task
 {
