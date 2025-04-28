@@ -38,24 +38,10 @@ void Task::CreateTask()
 	strcpy_s(taskStatus, 6, "false");
 }
 
-void Task::UpdateTask(int* choice)
+void Task::UpdateTask()
 {
-	do
-	{
-		std::cout << "What do you want to choose?" << std::endl << std::endl
-			<< "1. Title" << std::endl
-			<< "2. Text" << std::endl
-			<< "3. Deadline" << std::endl << std::endl;
-		std::cin >> *choice;
-		CheckingInput();
-		if (*choice < 1 || *choice > 3)
-		{
-			std::cout << "Your choice is uncorrect. Please, choose from the following." << std::endl;
-		}
-	} while (*choice < 1 || *choice > 3);
-
 	std::cin.ignore();
-	switch (*choice)
+	switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following."))
 	{
 	case 1:
 		std::cout << "Enter a new Title (max symbols - 20): ";
@@ -80,7 +66,6 @@ void Task::UpdateTask(int* choice)
 		} while (deadline[2] != '.' || deadline[5] != '.');
 		break;
 	}
-	*choice = 0;
 }
 
 void Task::ViewTask(int count) const

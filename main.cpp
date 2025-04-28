@@ -4,7 +4,7 @@
 
 int main()
 {
-	size_t SIZELIST = 10;
+	const size_t SIZELIST = 10;
 	Task* taskList = new Task[SIZELIST];
 
 	StartMenu(taskList, SIZELIST);

@@ -16,7 +16,7 @@ public:
 
 	void CreateTask();
 
-	void UpdateTask(int* choice);
+	void UpdateTask();
 
 	void ViewTask(int count) const;
 
