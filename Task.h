@@ -1,12 +1,13 @@
 #pragma once
 #include "TechnicalFunctions.h"
+#include <ctime>
 
 class Task
 {
 private:
 	char* taskTitle;
 	char* taskText;
-	char* deadline;
+	struct tm deadline;
 	char* taskStatus;
 
 public:

@@ -1,21 +1,20 @@
 #include "Task.h"
 
 Task::Task()
-	: taskTitle{ new char[20] {} }, taskText{ new char[64] {} }, deadline{ new char[11] {} }, taskStatus{ new char[6] {} }
+	: taskTitle{ new char[20] {} }, taskText{ new char[64] {} }, deadline{}, taskStatus{ new char[6] {} }
 { }
 
 Task::Task(const Task & other)
-	: taskTitle{ new char[20] {} }, taskText{ new char[64] {} }, deadline{ new char[11] {} }, taskStatus{ new char[6] {} }
+	: taskTitle{ new char[20] {} }, taskText{ new char[64] {} }, deadline{ other.deadline }, taskStatus{ new char[6] {} }
 {
 	strcpy_s(taskTitle, 20, other.taskTitle);
 	strcpy_s(taskText, 64, other.taskText);
-	strcpy_s(deadline, 11, other.deadline);
+	//strcpy_s(deadline, 11, other.deadline);
 	strcpy_s(taskStatus, 6, other.taskStatus);
 }
 
 void Task::CreateTask()
 {
-	std::cin.ignore(LLONG_MAX, '\n');
 	std::cout << "Enter a Title (max symbols - 20): ";
 	std::cin.getline(taskTitle, 20);
 	CheckingInput();
@@ -26,14 +25,14 @@ void Task::CreateTask()
 
 	do
 	{
-		std::cout << "Enter a deadline (dd.mm.YYYY format): ";
-		std::cin.getline(deadline, 11);
+		std::cout << "Enter a deadline (dd mm YYYY format): ";
+		std::cin >> deadline.tm_mday >> deadline.tm_mon >> deadline.tm_year;
 		CheckingInput();
-		if (deadline[2] != '.' || deadline[5] != '.')
+		if (deadline.tm_mday < 1 || deadline.tm_mday > 31 || deadline.tm_mon < 1 || deadline.tm_mon > 12 || deadline.tm_year < 2025)
 		{
 			std::cout << "Enter the deadline using the format!" << std::endl;
 		}
-	} while (deadline[2] != '.' || deadline[5] != '.');
+	} while (deadline.tm_mday < 1 || deadline.tm_mday > 31 || deadline.tm_mon < 1 || deadline.tm_mon > 12 || deadline.tm_year < 2025);
 	
 	strcpy_s(taskStatus, 6, "false");
 }
@@ -57,13 +56,13 @@ void Task::UpdateTask()
 		do
 		{
 			std::cout << "Enter a new deadline (dd.mm.YYYY format): ";
-			std::cin.getline(deadline, 11);
+			std::cin >> deadline.tm_mday >> deadline.tm_mon >> deadline.tm_year;
 			CheckingInput();
-			if (deadline[2] != '.' || deadline[5] != '.')
+			if (deadline.tm_mday < 1 || deadline.tm_mday > 31 || deadline.tm_mon < 1 || deadline.tm_mon > 12 || deadline.tm_year < 2025)
 			{
 				std::cout << "Enter the deadline using the format!" << std::endl;
 			}
-		} while (deadline[2] != '.' || deadline[5] != '.');
+		} while (deadline.tm_mday < 1 || deadline.tm_mday > 31 || deadline.tm_mon < 1 || deadline.tm_mon > 12 || deadline.tm_year < 2025);
 		break;
 	}
 }
@@ -77,7 +76,7 @@ void Task::ViewTask(int count) const
 	}
 	std::cout << count + 1 << ". " << taskTitle << ": " << std::endl <<
 		taskText << std::endl 
-		<< "Deadline: " << deadline << std::endl 
+		<< "Deadline: " << deadline.tm_mday << "." << deadline.tm_mon << "." << deadline.tm_year << std::endl
 		<< "Status: " << taskStatus << std::endl << std::endl;
 }
 
@@ -86,7 +85,7 @@ void Task::DeleteTask()
 	Task::~Task();
 	taskTitle = new char[20] {};
 	taskText = new char[64] {};
-	deadline = new char[11] {};
+	//deadline = new char[11] {};
 	taskStatus = new char[6] {};
 }
 
@@ -101,8 +100,9 @@ Task::~Task()
 	taskTitle = nullptr;
 	delete[] taskText;
 	taskText = nullptr;
-	delete[] deadline;
-	deadline = nullptr;
+	//delete[] deadline;
+	//deadline = nullptr;
+	deadline = {};
 	delete[] taskStatus;
 	taskStatus = nullptr;
 }
