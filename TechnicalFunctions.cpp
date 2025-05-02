@@ -13,27 +13,27 @@ void CheckingInput()
 	}
 }
 
-int UserChoice(int count, const char* error)
+int UserChoice(int count, const char* error, const char* whatToEnter)
 {
-	int choice = 0;
-
+	char checkForAString[4];
+	
 	do
 	{
-		std::cout << "Enter your choice: ";
-		std::cin >> choice;
+		std::cout << whatToEnter << ": ";
+		std::cin >> std::setw(4) >> checkForAString;
 		CheckingInput();
-		if (choice >= 1 && choice <= count)
+		if (checkForAString[1] != '\0' || (checkForAString[0] - '0') < 1 || (checkForAString[0] - '0') > count)
 		{
-			return choice;
+			std::cout << error << std::endl;
 		}
 		else
 		{
-			std::cout << error << std::endl;
+			return checkForAString[0] - '0';
 		}
 	} while (true);
 }
 
-int UserChoice(int count, const char* error, Task taskList[])
+int UserChoice(int count, const char* error, const char* whatToEnter, Task taskList[])
 {
 	int choice = 0;
 

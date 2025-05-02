@@ -9,7 +9,6 @@ Task::Task(const Task & other)
 {
 	strcpy_s(taskTitle, 20, other.taskTitle);
 	strcpy_s(taskText, 64, other.taskText);
-	//strcpy_s(deadline, 11, other.deadline);
 	strcpy_s(taskStatus, 6, other.taskStatus);
 }
 
@@ -40,7 +39,7 @@ void Task::CreateTask()
 void Task::UpdateTask()
 {
 	std::cin.ignore();
-	switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following."))
+	switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following.", "Enter what do you want to change\n1 - Title\n2 - Text\n3 - deadline\n"))
 	{
 	case 1:
 		std::cout << "Enter a new Title (max symbols - 20): ";
@@ -85,7 +84,6 @@ void Task::DeleteTask()
 	Task::~Task();
 	taskTitle = new char[20] {};
 	taskText = new char[64] {};
-	//deadline = new char[11] {};
 	taskStatus = new char[6] {};
 }
 
@@ -100,8 +98,6 @@ Task::~Task()
 	taskTitle = nullptr;
 	delete[] taskText;
 	taskText = nullptr;
-	//delete[] deadline;
-	//deadline = nullptr;
 	deadline = {};
 	delete[] taskStatus;
 	taskStatus = nullptr;

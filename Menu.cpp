@@ -9,7 +9,7 @@ void StartMenu(Task* taskList, size_t SIZELIST)
 			"2. Create a task" << std::endl <<
 			"3. Exit" << std::endl << std::endl;
 
-		switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following."))
+		switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following.", "Enter your choice"))
 		{
 		case 1:
 			if (ViewTasks(taskList, SIZELIST))
@@ -65,13 +65,13 @@ void MenuForTasks(Task* taskList)
 		<< "2. Update the task" << std::endl
 		<< "3. Return to main menu" << std::endl << std::endl;
 
-	switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following."))
+	switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following.", "Enter your choice"))
 	{
 	case 1:
-		taskList[UserChoice(10, "Your choice is uncorrect. Please, choose from the following.", taskList) - 1].DeleteTask();
+		taskList[UserChoice(10, "Your choice is uncorrect. Please, choose from the following.", "Choose the task", taskList) - 1].DeleteTask();
 		break;
 	case 2:
-		taskList[UserChoice(10, "Your choice is uncorrect. Please, choose from the following.", taskList) - 1].UpdateTask();
+		taskList[UserChoice(10, "Your choice is uncorrect. Please, choose from the following.", "Choose the task", taskList) - 1].UpdateTask();
 		break;
 	case 3:
 		return;
