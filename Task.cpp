@@ -16,17 +16,17 @@ void Task::CreateTask()
 {
 	std::cout << "Enter a Title (max symbols - 20): ";
 	std::cin.getline(taskTitle, 20);
-	CheckingInput();
+	CheckingInput(InputType::Getline);
 
 	std::cout << "Enter a Text (max symbols - 64): ";
 	std::cin.getline(taskText, 64);
-	CheckingInput();
+	CheckingInput(InputType::Getline);
 
 	do
 	{
 		std::cout << "Enter a deadline (dd mm YYYY format): ";
 		std::cin >> deadline.tm_mday >> deadline.tm_mon >> deadline.tm_year;
-		CheckingInput();
+		CheckingInput(InputType::Extraction);
 		if (deadline.tm_mday < 1 || deadline.tm_mday > 31 || deadline.tm_mon < 1 || deadline.tm_mon > 12 || deadline.tm_year < 2025)
 		{
 			std::cout << "Enter the deadline using the format!" << std::endl;
@@ -38,25 +38,24 @@ void Task::CreateTask()
 
 void Task::UpdateTask()
 {
-	std::cin.ignore();
 	switch (UserChoice(3, "Your choice is uncorrect. Please, choose from the following.", "Enter what do you want to change\n1 - Title\n2 - Text\n3 - deadline\n"))
 	{
 	case 1:
 		std::cout << "Enter a new Title (max symbols - 20): ";
 		std::cin.getline(taskTitle, 20);
-		CheckingInput();
+		CheckingInput(InputType::Getline);
 		break;
 	case 2:
 		std::cout << "Enter a new Text (max symbols - 64): ";
 		std::cin.getline(taskText, 64);
-		CheckingInput();
+		CheckingInput(InputType::Getline);
 		break;
 	case 3:
 		do
 		{
 			std::cout << "Enter a new deadline (dd.mm.YYYY format): ";
 			std::cin >> deadline.tm_mday >> deadline.tm_mon >> deadline.tm_year;
-			CheckingInput();
+			CheckingInput(InputType::Extraction);
 			if (deadline.tm_mday < 1 || deadline.tm_mday > 31 || deadline.tm_mon < 1 || deadline.tm_mon > 12 || deadline.tm_year < 2025)
 			{
 				std::cout << "Enter the deadline using the format!" << std::endl;

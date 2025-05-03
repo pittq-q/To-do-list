@@ -4,7 +4,13 @@
 
 class Task;
 
-void CheckingInput();
+enum InputType
+{
+	Extraction,
+	Getline
+};
+
+void CheckingInput(InputType type);
 
 int UserChoice(int count, const char* error, const char* whatToEnter);
 
